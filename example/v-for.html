@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if&v-else&v-show</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>v-for</h1>
+<hr>
+<div id="app">
+    <ul>
+        <li v-for="item in sortItems">{{item}}</li>
+    </ul>
+    <hr>
+    <ul>
+        <li v-for="(item,index) in sortStudents">
+            {{index+1}}-{{item.name}}-{{item.age}}岁
+        </li>
+    </ul>
+</div>
+<script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            items: [53, 23, 4, 54, 36, 28, 76],
+            student: [
+                {
+                    name: 'Kelvin',
+                    age: 33
+                },
+                {
+                    name: 'Panda',
+                    age: 13
+                },
+                {
+                    name: 'cat',
+                    age: 25
+                }
+            ]
+        },
+        computed: {
+            sortItems: function () {
+                return this.items.sort(sortNum)
+            },
+            sortStudents: function () {
+                return sortByKey(this.student,'age')
+            }
+        }
+    })
+    function sortNum(a, b) {
+        return a - b
+    }
+    function sortByKey(array, key) {
+        return array.sort(function (a,b) {
+            var x = a[key]
+            var y = b[key]
+            return ((x<y)?-1:((x>y)?1:0))
+        })
+    }
+</script>
+</body>
+</html>

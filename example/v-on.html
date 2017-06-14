@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>v-on</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>v-on</h1>
+<hr>
+<div id="app">
+    本场得分：{{count}}
+    <button @click="add">加分</button>
+    <button @click="jianfen">减分</button>
+    <input type="text" v-on:keyup.enter="onEnter" v-model="fenshu2">
+</div>
+<script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            count: 0,
+            fenshu2: 1
+        },
+        methods: {
+            add: function () {
+                this.count++
+            },
+            jianfen: function () {
+                this.count--
+            },
+            onEnter: function () {
+                this.count = this.count + parseInt(this.fenshu2)
+            }
+        }
+    })
+</script>
+</body>
+</html>
