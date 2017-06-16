@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HelloWorld</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>Hello World!</h1>
+<hr>
+<div id="app">
+    {{newPrice}}
+    <ul>
+        <li v-for="item in reverseNews" >{{item.title}}-{{item.date}}</li>
+    </ul>
+</div>
+<script type="text/javascript">
+    var newsList = [
+        {title:'11111111111111', date: '2017/3/24'},
+        {title:'22222222222222', date: '2017/3/25'},
+        {title:'33333333333333', date: '2017/3/25'},
+        {title:'44444444444444', date: '2017/3/26'},
+    ]
+    var app = new Vue({
+        el: '#app',
+        data: {
+            price: 100,
+            newsList: newsList
+        },
+        computed: {
+            newPrice: function () {
+                return this.price = '$' + this.price
+            },
+            reverseNews: function () {
+                return this.newsList.reverse()
+            }
+        }
+    })
+</script>
+</body>
+</html>
