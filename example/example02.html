@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>example methods demo2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <script type="text/javascript" src="../assets/js/jquery-3.2.1.js"></script>
+</head>
+<body>
+<h1>example methods demo2</h1>
+<hr>
+<div id="app"></div>
+<p ><button onclick="destroy()">销毁</button></p>
+<p ><button onclick="reload()">更新</button></p>
+<p ><button onclick="tick()">更改数据</button></p>
+<script type="text/javascript">
+    var jspang = Vue.extend({
+        template:`<p>{{message}}</p>`,
+        data: function () {
+            return {
+                message: 'Hello, I am jspang'
+            }
+        },
+        mounted: function () {
+            console.log("mounted被创建")
+        },
+        destroyed: function () {
+            console.log("已被销毁")
+        },
+        updated: function () {
+            console.log("已更新")
+        }
+    });
+    var vm = new jspang().$mount('#app')
+    function destroy() {
+        vm.$destroy()
+    }
+    function reload() {
+        vm.$forceUpdate()
+    }
+    function tick() {
+        vm.message ="update message info"
+        vm.$nextTick(function () {
+            console.log('数据更新后被回调')
+        })
+    }
+</script>
+</body>
+</html>
